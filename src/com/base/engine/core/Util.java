@@ -1,5 +1,6 @@
 package com.base.engine.core;
 
+import com.base.engine.components.Camera;
 import com.base.engine.rendering.Vertex;
 import org.lwjgl.BufferUtils;
 
@@ -86,4 +87,54 @@ public class Util {
     public static ByteBuffer createByteBuffer(int size) {
         return BufferUtils.createByteBuffer(size);
     }
+
+
+    /*
+    public static Matrix4f createTransformationMatrix(Vector2f translation, Vector2f scale) {
+        Matrix4f matrix = new Matrix4f();
+        matrix.identity();
+
+        matrix.tra
+        Matrix4f.translate(translation, matrix, matrix);
+        Matrix4f.scale(new Vector3f(scale.getX(), scale.getY(), 1f), matrix, matrix);
+        return matrix;
+    }
+    */
+
+    public static float barryCentric(Vector3f p1, Vector3f p2, Vector3f p3, Vector2f pos) {
+        float det = (p2.getZ() - p3.getZ()) * (p1.getX() - p3.getX()) + (p3.getX() - p2.getX()) * (p1.getZ() - p3.getZ());
+        float l1 = ((p2.getZ() - p3.getZ()) * (pos.getX() - p3.getX()) + (p3.getX() - p2.getX()) * (pos.getY() - p3.getZ())) / det;
+        float l2 = ((p3.getZ() - p1.getZ()) * (pos.getX() - p3.getX()) + (p1.getX() - p3.getX()) * (pos.getY() - p3.getZ())) / det;
+        float l3 = 1.0f - l1 - l2;
+        return l1 * p1.getY() + l2 * p2.getY() + l3 * p3.getY();
+
+    }
+
+    /*
+    public static Matrix4f createTransformationMatrix(Vector3f translation, float rx, float ry, float rz, float scale) {
+        Matrix4f matrix = new Matrix4f();
+        matrix.setIdentity();
+        Matrix4f.translate(translation, matrix, matrix);
+        Matrix4f.rotate((float) Math.toRadians(rx), new Vector3f(1, 0, 0), matrix, matrix);
+        Matrix4f.rotate((float) Math.toRadians(ry), new Vector3f(0, 1, 0), matrix, matrix);
+        Matrix4f.rotate((float) Math.toRadians(rz), new Vector3f(0, 0, 1), matrix, matrix);
+
+        Matrix4f.scale(new Vector3f(scale, scale, scale), matrix, matrix);
+        return matrix;
+    }
+
+
+    public static Matrix4f createViewMatrix(Camera camera) {
+        Matrix4f viewMatrix = new Matrix4f();
+        viewMatrix.identity();
+        viewMatrix.
+
+       // Matrix4f.rotate((float) Math.toRadians(camera.getPitch()), new Vector3f(1, 0, 0), viewMatrix, viewMatrix);
+        //Matrix4f.rotate((float) Math.toRadians(camera.getYaw()), new Vector3f(0, 1, 0), viewMatrix, viewMatrix);
+        Vector3f cameraPos = camera.getPosition();
+        Vector3f negativCamaraPos = new Vector3f(-cameraPos.getX(), -cameraPos.getY(), -cameraPos.z);
+        Matrix4f.translate(negativCamaraPos, viewMatrix, viewMatrix);
+        return viewMatrix;
+    }
+    */
 }

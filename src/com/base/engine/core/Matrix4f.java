@@ -1,5 +1,7 @@
 package com.base.engine.core;
 
+
+
 public class Matrix4f
 {
 
@@ -187,6 +189,34 @@ public class Matrix4f
     public void set(int x, int y, float value)
     {
         m[x][y] = value;
+    }
+
+
+    public org.lwjgl.util.vector.Matrix4f convertToLwjglMatrix4f()
+    {
+        org.lwjgl.util.vector.Matrix4f mat = new org.lwjgl.util.vector.Matrix4f();
+
+        mat.m00 = this.get(0,0);
+        mat.m01 = this.get(0,1);
+        mat.m02 = this.get(0,2);
+        mat.m03 = this.get(0,3);
+
+        mat.m10 = this.get(1,0);
+        mat.m11 = this.get(1,1);
+        mat.m12 = this.get(1,2);
+        mat.m13 = this.get(1,3);
+
+        mat.m20 = this.get(2,0);
+        mat.m21 = this.get(2,1);
+        mat.m22 = this.get(2,2);
+        mat.m23 = this.get(2,3);
+
+        mat.m30 = this.get(3,0);
+        mat.m31 = this.get(3,1);
+        mat.m32 = this.get(3,2);
+        mat.m33 = this.get(3,3);
+
+        return  mat;
     }
 
 

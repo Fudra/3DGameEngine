@@ -34,21 +34,21 @@ public class TestGame extends Game {
         planeObject.getTransform().getPosition().set(0, -1, 5);
         addToScene(planeObject);
 
-        GameObject directionalLightObject1 = new GameObject();
+        GameObject directionalLightObject1 = new GameObject(); //
         GameObject directionalLightObject2 = new GameObject();
         GameObject directionalLightObject3 = new GameObject();
-        DirectionalLight directionalLight1 = new DirectionalLight(new Vector3f().setZAxis(), 0.1f);
+        DirectionalLight directionalLight1 = new DirectionalLight(new Vector3f().setZAxis(), 0.1f); //
         DirectionalLight directionalLight2 = new DirectionalLight(new Vector3f().setYAxis(), 0.1f);
         DirectionalLight directionalLight3 = new DirectionalLight(new Vector3f().setXAxis(), 0.1f);
-        directionalLightObject1.addComponent(directionalLight1);
+        directionalLightObject1.addComponent(directionalLight1); //
         directionalLightObject2.addComponent(directionalLight2);
         directionalLightObject3.addComponent(directionalLight3);
-        directionalLight1.getTransform().setRotation(new Quaternion().rotate(new Vector3f(1,0,0), -45));
+        directionalLight1.getTransform().setRotation(new Quaternion().rotate(new Vector3f(1,0,0), -45)); //
         directionalLight2.getTransform().setRotation(new Quaternion().rotate(new Vector3f(1,0,0), -90));
         directionalLight2.getTransform().getPosition().set(0,1,1);
         directionalLight3.getTransform().setRotation(new Quaternion().rotate(new Vector3f(1,0,0), -90));
 
-        addToScene(directionalLightObject1);
+        addToScene(directionalLightObject1); //
         addToScene(directionalLightObject2);
         addToScene(directionalLightObject3);
 
